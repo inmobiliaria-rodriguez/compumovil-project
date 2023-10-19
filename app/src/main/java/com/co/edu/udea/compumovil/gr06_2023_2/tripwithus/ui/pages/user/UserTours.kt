@@ -1,36 +1,29 @@
-package com.co.edu.udea.compumovil.gr06_2023_2.tripwithus
+package com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user
 
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.Tour
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.HeaderComponent
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.UserTourItemComponent
-import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.agency.ListOfMyTours
-import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user.ListOfTours
-import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.TripWithUsTheme
 
-
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            TripWithUsTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = TripWithUsTheme.colors.uiBackground) {
-                    //ListOfMyTours(TestTours)
-                    //ListOfTours(TestTours)
-                }
-            }
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun ListOfTours(items: List<Tour>) { //items: List<Tour>
+    LazyColumn {
+        stickyHeader {
+            HeaderComponent(text = "Tours Disponibles")
+        }
+        itemsIndexed(TestTours){ index, tour ->
+            UserTourItemComponent(
+                tour,
+                index,
+                modifier = Modifier
+                    .padding(8.dp))
         }
     }
 }
@@ -38,7 +31,7 @@ class MainActivity : ComponentActivity() {
 val TestTours = listOf(
     Tour(
         "Rapido Ochoa",
-        "Urabá",
+        "Uraba",
         "test",
         "4pm",
         "10 de Febrero",
@@ -62,7 +55,7 @@ val TestTours = listOf(
     ),
     Tour(
         "Estepenco",
-        "Popayán",
+        "Popayan",
         "test",
         "16:00",
         "31 de Diciembre",

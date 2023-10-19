@@ -12,6 +12,14 @@ val darumaDrop = FontFamily(
     androidx.compose.ui.text.font.Font(R.font.darumadropone_regular, FontWeight.W500)
 )
 
+val asul = FontFamily(
+    androidx.compose.ui.text.font.Font(R.font.asul_regular, FontWeight.W500)
+)
+
+val asulBold = FontFamily(
+    androidx.compose.ui.text.font.Font(R.font.asul_regular, FontWeight.W500)
+)
+
 
 // Set of Material typography styles to start with
 val Typography = Typography(
