@@ -20,3 +20,6 @@ val Shadow3 = Color(0xff9b86fa)
 
 val Lavender3 = Color(0xffc186fa)
 val Rose2 = Color(0xfffdbbcf)
+
+val DarkOrange = Color(0xFFEE6C4D)
+val lightOrange = Color(0xFFEFCEA7)

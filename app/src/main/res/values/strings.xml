@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Trip with us</string>
+    <string name="user_name">Usuario</string>
+    <string name="user_password">Contraseña</string>
+    <string name="agency">Agencia</string>
+
+    <string name="name">Nombre</string>
+    <string name="document">Documento/Nit</string>
+    <string name="email">Correo Electrónico</string>
+    <string name="password">Contraseña</string>
 </resources>

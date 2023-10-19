@@ -8,7 +8,6 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -32,6 +31,8 @@ private val LightColorScheme = TripWithUsColors(
     mainFontBlack = MainFontBlack,
     gradientTourItem1 = listOf(Ocean3, Shadow3),
     gradientTourItem2 = listOf(Lavender3, Rose2),
+    buttonDarkColor = DarkOrange,
+    lightOrange = lightOrange
 )
 
 @Composable
@@ -77,6 +78,8 @@ class TripWithUsColors(
     mainFontBlack: Color,
     gradientTourItem1: List<Color>,
     gradientTourItem2: List<Color>,
+    buttonDarkColor: Color,
+    lightOrange: Color
 ) {
     var uiBackground by mutableStateOf(uiBackground)
         private set
@@ -90,6 +93,11 @@ class TripWithUsColors(
         private set
     var gradientTourItem2 by mutableStateOf(gradientTourItem2)
         private set
+    var buttonDarkColor by mutableStateOf(buttonDarkColor)
+        private set
+
+    var lightOrange by mutableStateOf(lightOrange)
+        private set
 
     fun copy(): TripWithUsColors = TripWithUsColors(
         uiBackground = uiBackground,
@@ -98,6 +106,8 @@ class TripWithUsColors(
         mainFontBlack = mainFontBlack,
         gradientTourItem1 = gradientTourItem1,
         gradientTourItem2 = gradientTourItem2,
+        buttonDarkColor = buttonDarkColor,
+        lightOrange = lightOrange
     )
 }
 @Composable
