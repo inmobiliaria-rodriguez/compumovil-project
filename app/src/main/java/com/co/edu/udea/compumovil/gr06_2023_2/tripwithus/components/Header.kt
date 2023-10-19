@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.darumaDrop
 
 @Composable
 fun HeaderComponent(text: String) {
@@ -22,7 +23,7 @@ fun HeaderComponent(text: String) {
         .background(MaterialTheme.colorScheme.onPrimary)
 
     val contentModifier = Modifier
-        .padding(16.dp)
+        .padding(20.dp)
 
 
     Box(
@@ -37,9 +38,10 @@ fun HeaderComponent(text: String) {
         ) {
 
             Text(
+                fontFamily = darumaDrop,
                 text = text,
                 modifier = contentModifier,
-                fontSize = 20.sp,
+                fontSize = 40.sp,
                 color = Color(0xFF3D5A80)
             )
         }
