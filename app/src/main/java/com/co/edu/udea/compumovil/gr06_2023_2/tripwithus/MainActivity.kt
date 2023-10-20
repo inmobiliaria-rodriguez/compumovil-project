@@ -10,6 +10,7 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.Tour
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.agency.ListOfMyTours
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.newtour.NewTourPage
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user.ListOfTours
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user.MapsRoute
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.TripWithUsTheme
 
 
@@ -25,6 +26,7 @@ class MainActivity : ComponentActivity() {
                     //LoginPage()
                     //ListOfMyTours()
                     //ListOfTours()
+                    //MapsRoute()
                 }
             }
         }
