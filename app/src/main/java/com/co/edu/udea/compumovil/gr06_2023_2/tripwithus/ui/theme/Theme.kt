@@ -31,6 +31,7 @@ private val LightColorScheme = TripWithUsColors(
     mainFontBlack = MainFontBlack,
     gradientTourItem1 = listOf(Ocean3, Shadow3),
     gradientTourItem2 = listOf(Lavender3, Rose2),
+    gradientHeader = listOf(HeaderBackground, Ocean3),
     buttonDarkColor = DarkOrange,
     lightOrange = lightOrange
 )
@@ -78,6 +79,7 @@ class TripWithUsColors(
     mainFontBlack: Color,
     gradientTourItem1: List<Color>,
     gradientTourItem2: List<Color>,
+    gradientHeader: List<Color>,
     buttonDarkColor: Color,
     lightOrange: Color
 ) {
@@ -93,6 +95,8 @@ class TripWithUsColors(
         private set
     var gradientTourItem2 by mutableStateOf(gradientTourItem2)
         private set
+    var gradientHeader by mutableStateOf(gradientHeader)
+        private set
     var buttonDarkColor by mutableStateOf(buttonDarkColor)
         private set
 
@@ -106,6 +110,7 @@ class TripWithUsColors(
         mainFontBlack = mainFontBlack,
         gradientTourItem1 = gradientTourItem1,
         gradientTourItem2 = gradientTourItem2,
+        gradientHeader = gradientHeader,
         buttonDarkColor = buttonDarkColor,
         lightOrange = lightOrange
     )
