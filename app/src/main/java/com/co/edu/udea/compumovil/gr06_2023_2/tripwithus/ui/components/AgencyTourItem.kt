@@ -54,7 +54,6 @@ fun AgencyTourItemComponent(
     }
     Column(
         modifier = modifier
-            .height(112.dp)
             .shadow(elevation = 3.dp, shape = RoundedCornerShape(8.dp))
             .clip(RoundedCornerShape(8.dp))
             .background(Brush.horizontalGradient(gradient))

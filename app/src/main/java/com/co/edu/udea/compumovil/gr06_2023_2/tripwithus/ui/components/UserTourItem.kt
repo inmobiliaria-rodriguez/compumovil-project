@@ -42,7 +42,6 @@ fun UserTourItemComponent(
     }
     Column(
         modifier = modifier
-            .height(132.dp)
             .shadow(elevation = 3.dp, shape = RoundedCornerShape(8.dp))
             .clip(RoundedCornerShape(8.dp))
             .background(Brush.horizontalGradient(gradient))
