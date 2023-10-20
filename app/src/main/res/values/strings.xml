@@ -8,4 +8,12 @@
     <string name="document">Documento/Nit</string>
     <string name="email">Correo Electrónico</string>
     <string name="password">Contraseña</string>
+
+    <string name="guide">Guia</string>
+    <string name="time">Hora de salida</string>
+    <string name="date">Fecha</string>
+    <string name="duration">Duración</string>
+    <string name="price">Precio</string>
+    <string name="quota">Cupos</string>
+    <string name="description">Descripción</string>
 </resources>
