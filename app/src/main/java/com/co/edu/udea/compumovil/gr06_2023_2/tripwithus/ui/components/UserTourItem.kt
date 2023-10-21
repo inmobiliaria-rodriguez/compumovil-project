@@ -169,7 +169,7 @@ fun UserTourItemComponent(
                             textDecoration = TextDecoration.Underline,
                             modifier = Modifier
                                 .padding(end = 8.dp)
-                                .clickable() {
+                                .clickable {
                                     expanded = !expanded
                                 }
                         )
@@ -245,7 +245,7 @@ fun UserTourItemComponent(
                             textDecoration = TextDecoration.Underline,
                             modifier = Modifier
                                 .padding(end = 8.dp)
-                                .clickable() {
+                                .clickable {
                                     Log.i("hola", "inscrito")
                                 }
                         )
@@ -263,7 +263,7 @@ fun UserTourItemComponent(
                             textDecoration = TextDecoration.Underline,
                             modifier = Modifier
                                 .padding(end = 8.dp)
-                                .clickable() {
+                                .clickable {
                                     expanded = !expanded
                                 }
                         )
@@ -274,7 +274,7 @@ fun UserTourItemComponent(
     }
 }
 
-@Preview()
+@Preview
 @Composable
 private fun TourItemPreview() {
     TripWithUsTheme {
