@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -16,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.Tour
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.TripWithUsTheme
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.darumaDrop
 @Composable
@@ -37,7 +35,7 @@ fun ButtonItem(
             colors = ButtonDefaults.buttonColors(buttonColors),
             shape = RoundedCornerShape(8.dp),
             modifier = btnModifier
-                .width(150.dp)
+                .width(152.dp)
         ) {
             Text(
                 fontFamily = darumaDrop,

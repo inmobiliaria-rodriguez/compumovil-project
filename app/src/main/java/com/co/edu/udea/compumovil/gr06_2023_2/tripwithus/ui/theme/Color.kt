@@ -15,11 +15,11 @@ val HeaderBackground = Color(0xFF98C1D9)
 val MainTitle = Color(0xFF3D5A80)
 val MainFontBlack = Color(0xFF242828)
 
-val Ocean3 = Color(0xff86f7fa)
-val Shadow3 = Color(0xff9b86fa)
+val Ocean3 = Color(0xFF66BDC0)
+val Shadow3 = Color(0xFF5397EB)
 
-val Lavender3 = Color(0xffc186fa)
-val Rose2 = Color(0xfffdbbcf)
+val Lavender3 = Color(0xFF8691DB)
+val Rose2 = Color(0xFF93EEEE)
 
 val DarkOrange = Color(0xFFEE6C4D)
 val lightOrange = Color(0xFFEFCEA7)
