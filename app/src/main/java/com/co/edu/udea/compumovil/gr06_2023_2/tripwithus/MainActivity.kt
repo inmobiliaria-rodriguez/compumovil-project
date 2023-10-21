@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     //NewTourPage()
                     //RegisterPage()
                     //LoginPage()
-                    //ListOfMyTours()
+                    ListOfMyTours()
                     //ListOfTours()
                     //MapsRoute()
                 }
