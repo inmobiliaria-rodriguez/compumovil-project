@@ -30,7 +30,10 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.TextField
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LoginPage() {
+fun LoginPage(
+    onLoginButtonClicked: () -> Unit,
+    onRegisterButtonClicked: () -> Unit,
+) {
     val backgroundImage = painterResource(id = R.drawable.back_ground)
     var name by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -43,7 +46,6 @@ fun LoginPage() {
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.fillMaxSize()
         )
-
         LazyColumn {
             stickyHeader {
                 HeaderComponent(text = "Trip With Us")
@@ -80,17 +82,19 @@ fun LoginPage() {
                         modifier = Modifier.weight(1f),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        ButtonItem(text = "Ingresar") {
-                            // Acción para el botón Ingresar
-                        }
+                        ButtonItem(
+                            text = "Ingresar",
+                            onClickFunction = onLoginButtonClicked
+                        )
                     }
                     Column(
                         modifier = Modifier.weight(1f),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        ButtonItem(text = "Registrate") {
-                            // Acción para el botón Registrarse
-                        }
+                        ButtonItem(
+                            text = "Registrate",
+                            onClickFunction = onRegisterButtonClicked
+                        )
                     }
                 }
             }

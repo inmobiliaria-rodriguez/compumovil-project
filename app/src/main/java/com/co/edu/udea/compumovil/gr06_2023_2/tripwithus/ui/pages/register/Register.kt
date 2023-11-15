@@ -30,7 +30,10 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.TextField
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun RegisterPage() {
+fun RegisterPage(
+    onBackButtonClicked: () -> Unit,
+    onRegisterButtonClicked: () -> Unit,
+) {
     val backgroundImage = painterResource(id = R.drawable.back_ground)
     val context = LocalContext.current
     var selectedUserOption = mutableStateOf("")
@@ -79,13 +82,15 @@ fun RegisterPage() {
                         onValueChange = { newUserPassword ->
                             userPassword = newUserPassword
                         })
-                    ButtonItem(text = "Registrate") {
-                        // Acción para el botón Registrate
-                    }
+                    ButtonItem(
+                        text = "Registrate",
+                        onClickFunction = onRegisterButtonClicked
+                    )
                     Spacer(modifier = Modifier.height(40.dp)) // Espacio vertical de 32 píxeles
-                    ButtonItem(text = "Volver") {
-                        // Acción para el botón Volver
-                    }
+                    ButtonItem(
+                        text = "Volver",
+                        onClickFunction = onBackButtonClicked
+                    )
                 }
 
 
