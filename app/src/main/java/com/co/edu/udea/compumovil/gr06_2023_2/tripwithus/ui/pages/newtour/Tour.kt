@@ -26,7 +26,10 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.TextField
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
-fun NewTourPage() {
+fun NewTourPage(
+    onCreateButtonClicked: () -> Unit,
+    onCancelButtonClicked: () -> Unit,
+) {
     val backgroundImage = painterResource(id = R.drawable.back_ground)
     var tourName by remember { mutableStateOf("") }
     var tourGuide by remember { mutableStateOf("") }
@@ -92,12 +95,14 @@ fun NewTourPage() {
                     CustomTextArea(text = text) {
                         text = it
                     }
-                    ButtonItem(text = "Crear") {
-                        // Acción para el botón Crear
-                    }
-                    ButtonItem(text = "Cancelar") {
-                        // Acción para el botón Cancelar
-                    }
+                    ButtonItem(
+                        text = "Crear",
+                        onClickFunction = onCreateButtonClicked
+                    )
+                    ButtonItem(
+                        text = "Cancelar",
+                        onClickFunction = onCancelButtonClicked
+                    )
                 }
 
 

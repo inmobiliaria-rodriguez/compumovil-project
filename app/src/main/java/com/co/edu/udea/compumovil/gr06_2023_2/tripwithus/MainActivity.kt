@@ -69,13 +69,28 @@ fun TripWithUsApp(
                     )
                 }
                 composable(route = TripWithUsScreen.AgencyTours.name) {
-                    ListOfMyTours()
+                    ListOfMyTours(
+                        onNewTourClicked = {
+                            navController.navigate(TripWithUsScreen.NewTour.name)
+                        }
+                    )
                 }
                 composable(route = TripWithUsScreen.NewTour.name) {
-                    NewTourPage()
+                    NewTourPage(
+                        onCreateButtonClicked = {
+                            navController.navigate(TripWithUsScreen.AgencyTours.name)
+                        },
+                        onCancelButtonClicked = {
+                            navController.navigate(TripWithUsScreen.AgencyTours.name)
+                        }
+                    )
                 }
                 composable(route = TripWithUsScreen.UserTours.name) {
-                    ListOfTours()
+                    ListOfTours(
+                        onInscriptionButtonClicked = {
+                            navController.navigate(TripWithUsScreen.MapTour.name)
+                        }
+                    )
                 }
                 composable(route = TripWithUsScreen.MapTour.name) {
                     MapsRoute()

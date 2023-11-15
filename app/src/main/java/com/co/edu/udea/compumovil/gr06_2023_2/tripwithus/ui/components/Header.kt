@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,7 +23,11 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.TripWithUsThem
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.darumaDrop
 
 @Composable
-fun HeaderComponent(text: String) {
+fun HeaderComponent(
+    text: String,
+    buttonText: String? = "",
+    onNewTourClicked: () -> Unit = {}
+) {
     val headerModifier = Modifier
         .fillMaxWidth()
         .height(90.dp)
@@ -41,6 +47,19 @@ fun HeaderComponent(text: String) {
             fontSize = 40.sp,
             color = TripWithUsTheme.colors.mainTitle
         )
+        if(buttonText!=""){
+            ButtonItem(
+                text = "+Tour",
+                onClickFunction = onNewTourClicked,
+                buttonColors = TripWithUsTheme.colors.mainTitle,
+                btnModifier = Modifier
+                    .offset(y = 16.dp)
+                    .padding(8.dp)
+                    .width(110.dp),
+                fontModifier = Modifier
+                    .offset(y = -4.dp)
+            )
+        }
     }
 }
 

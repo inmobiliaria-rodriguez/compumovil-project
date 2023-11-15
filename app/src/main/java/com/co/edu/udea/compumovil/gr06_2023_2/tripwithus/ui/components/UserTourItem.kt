@@ -44,7 +44,8 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.darumaDrop
 fun UserTourItemComponent(
     data: Tour,
     index: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onInscriptionTextClicked: () -> Unit,
 ) {
     var expanded by remember { mutableStateOf (false) }
     val gradient = when (index % 2) {
@@ -246,7 +247,7 @@ fun UserTourItemComponent(
                             modifier = Modifier
                                 .padding(end = 8.dp)
                                 .clickable {
-                                    Log.i("hola", "inscrito")
+                                    onInscriptionTextClicked()
                                 }
                         )
                     }
@@ -292,6 +293,7 @@ private fun TourItemPreview() {
                 "En curso"
             ),
             index = 0,
+            onInscriptionTextClicked = {},
             modifier = Modifier
                 .padding(8.dp)
         )

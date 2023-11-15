@@ -15,7 +15,9 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.tourList
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ListOfTours() {
+fun ListOfTours(
+    onInscriptionButtonClicked: () -> Unit
+) {
     val TestTours = tourList(context = LocalContext.current);
     LazyColumn {
         stickyHeader {
@@ -25,6 +27,7 @@ fun ListOfTours() {
             UserTourItemComponent(
                 tour,
                 index,
+                onInscriptionTextClicked = onInscriptionButtonClicked,
                 modifier = Modifier
                     .padding(8.dp))
         }

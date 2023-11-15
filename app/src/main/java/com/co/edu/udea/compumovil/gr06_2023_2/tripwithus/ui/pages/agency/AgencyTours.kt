@@ -16,12 +16,18 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.tourList
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ListOfMyTours() { //items: List<Tour>
+fun ListOfMyTours(
+    onNewTourClicked: () -> Unit,
+) { //items: List<Tour>
     val TestTours = tourList(context = LocalContext.current);
     Log.d("ToString", TestTours.toString())
     LazyColumn {
         stickyHeader {
-            HeaderComponent(text = "Mis Tours")
+            HeaderComponent(
+                text = "Mis Tours",
+                buttonText = "+Tour",
+                onNewTourClicked = onNewTourClicked
+            )
         }
         itemsIndexed(TestTours){ index, tour ->
             AgencyTourItemComponent(
