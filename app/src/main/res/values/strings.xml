@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Trip with us</string>
-    <string name="user_name">Usuario</string>
+    <string name="user_email">Correo</string>
     <string name="user_password">Contraseña</string>
     <string name="agency">Agencia</string>
 

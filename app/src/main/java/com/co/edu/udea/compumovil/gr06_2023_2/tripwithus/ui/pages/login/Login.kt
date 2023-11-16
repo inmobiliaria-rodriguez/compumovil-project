@@ -20,22 +20,26 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.R
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.ButtonItem
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.HeaderComponent
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.TextFieldItem
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.LoginFunctions
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun LoginPage(
-    onLoginButtonClicked: () -> Unit,
+    loggObj: LoginFunctions,
+    onSuccessLogin: () -> Unit,
     onRegisterButtonClicked: () -> Unit,
 ) {
+    val context = LocalContext.current
     val backgroundImage = painterResource(id = R.drawable.back_ground)
-    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     Box(
         modifier = Modifier.fillMaxSize()
@@ -56,10 +60,10 @@ fun LoginPage(
                 Column {
                     Row {
                         TextFieldItem(
-                            text = R.string.user_name,
-                            value = name,
-                            onValueChange = { newName ->
-                                name = newName
+                            text = R.string.user_email,
+                            value = email,
+                            onValueChange = { newEmail ->
+                                email = newEmail
                             }
                         )
                     }
@@ -84,7 +88,9 @@ fun LoginPage(
                     ) {
                         ButtonItem(
                             text = "Ingresar",
-                            onClickFunction = onLoginButtonClicked
+                            onClickFunction = {
+                                loggObj.logInToTheApp(context, email, password, onSuccessLogin)
+                            }
                         )
                     }
                     Column(

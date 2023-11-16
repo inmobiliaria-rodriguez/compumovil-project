@@ -21,7 +21,7 @@ fun RadioButtonComponent(
     context: Context
 ) {
     val agencyString = context.getString(R.string.agency)
-    val userString = context.getString(R.string.user_name)
+    val userString = context.getString(R.string.user_email)
 
     Column(
         modifier = Modifier

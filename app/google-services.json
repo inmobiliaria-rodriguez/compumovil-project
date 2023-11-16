@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "564656867225",
+    "project_id": "tripwithus-movil",
+    "storage_bucket": "tripwithus-movil.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:564656867225:android:e187c6711c22d8b338f508",
+        "android_client_info": {
+          "package_name": "com.co.edu.udea.compumovil.gr06_2023_2.tripwithus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhXZ8k1oWKn7XYdgdntIXxCkhCQ6cXSYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,6 +1,10 @@
 package com.co.edu.udea.compumovil.gr06_2023_2.tripwithus
 
+import android.content.ContentValues
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,6 +21,9 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.register.Regis
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user.ListOfTours
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user.MapsRoute
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.TripWithUsTheme
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.LoginFunctions
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 enum class TripWithUsScreen() {
     Login,
@@ -27,14 +34,22 @@ enum class TripWithUsScreen() {
     MapTour
 }
 
+private val loggclass = LoginFunctions()
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        loggclass.setAuth(Firebase.auth)
+
+        //val currentUser = auth.currentUser //Needed??
+
         setContent {
             TripWithUsApp()
         }
     }
 }
+
+
 
 @Composable
 fun TripWithUsApp(
@@ -49,7 +64,8 @@ fun TripWithUsApp(
             ) {
                 composable(route = TripWithUsScreen.Login.name) {
                     LoginPage(
-                        onLoginButtonClicked = {
+                        loggObj = loggclass,
+                        onSuccessLogin = {
                             navController.navigate(TripWithUsScreen.AgencyTours.name)//Goes to the Agency Dashboard
                             //navController.navigate(TripWithUsScreen.UserTours.name)//Goes to the User Dashboard
                         },
@@ -60,10 +76,11 @@ fun TripWithUsApp(
                 }
                 composable(route = TripWithUsScreen.Register.name) {
                     RegisterPage(
+                        loggObj = loggclass,
                         onBackButtonClicked = {
                             navController.navigate(TripWithUsScreen.Login.name)
                         },
-                        onRegisterButtonClicked = {
+                        onSuccessRegister = {
                             navController.navigate(TripWithUsScreen.UserTours.name)
                         }
                     )

@@ -1,6 +1,10 @@
 package com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.register
 
 import android.annotation.SuppressLint
+import android.content.ContentValues.TAG
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -26,13 +30,19 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.ButtonIte
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.HeaderComponent
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.RadioButtonComponent
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.TextFieldItem
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.LoginFunctions
+
+//import com.google.firebase.auth.FirebaseAuth
+
+//private lateinit var auth: FirebaseAuth
 
 @SuppressLint("UnrememberedMutableState")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun RegisterPage(
+    loggObj: LoginFunctions,
     onBackButtonClicked: () -> Unit,
-    onRegisterButtonClicked: () -> Unit,
+    onSuccessRegister: () -> Unit,
 ) {
     val backgroundImage = painterResource(id = R.drawable.back_ground)
     val context = LocalContext.current
@@ -84,7 +94,9 @@ fun RegisterPage(
                         })
                     ButtonItem(
                         text = "Registrate",
-                        onClickFunction = onRegisterButtonClicked
+                        onClickFunction = {
+                            val success = loggObj.createNewUser(context,email,userPassword,onSuccessRegister)
+                        }
                     )
                     Spacer(modifier = Modifier.height(40.dp)) // Espacio vertical de 32 píxeles
                     ButtonItem(
@@ -92,8 +104,6 @@ fun RegisterPage(
                         onClickFunction = onBackButtonClicked
                     )
                 }
-
-
             }
         }
     }
