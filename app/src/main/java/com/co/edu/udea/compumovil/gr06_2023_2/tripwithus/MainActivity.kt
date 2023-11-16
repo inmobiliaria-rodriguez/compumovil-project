@@ -21,8 +21,10 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.register.Regis
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user.ListOfTours
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.user.MapsRoute
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.TripWithUsTheme
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.DatabaseFunctions
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.LoginFunctions
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
 enum class TripWithUsScreen() {
@@ -35,14 +37,15 @@ enum class TripWithUsScreen() {
 }
 
 private val loggclass = LoginFunctions()
+private val dbclass = DatabaseFunctions()
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loggclass.setAuth(Firebase.auth)
-
+        dbclass.setDatabase(Firebase.database.reference)
+        loggclass.setDatabase(dbclass.getDatabase())
         //val currentUser = auth.currentUser //Needed??
-
         setContent {
             TripWithUsApp()
         }

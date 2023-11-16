@@ -26,6 +26,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.R
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.User
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.ButtonItem
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.HeaderComponent
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.RadioButtonComponent
@@ -95,7 +96,12 @@ fun RegisterPage(
                     ButtonItem(
                         text = "Registrate",
                         onClickFunction = {
-                            val success = loggObj.createNewUser(context,email,userPassword,onSuccessRegister)
+                            var agency: Boolean = false
+                            if(selectedUserOption.value=="Agencia"){
+                                agency = true
+                            }
+                            var userToRegister = User(agency,userName,document,email)
+                            loggObj.createNewUser(context,userToRegister,email,userPassword,onSuccessRegister)
                         }
                     )
                     Spacer(modifier = Modifier.height(40.dp)) // Espacio vertical de 32 píxeles
