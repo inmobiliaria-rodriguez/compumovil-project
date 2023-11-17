@@ -135,8 +135,18 @@ fun TripWithUsApp(
                 }
                 composable(route = TripWithUsScreen.NewTour.name) {
                     NewTourPage(
+                        userObj = loggUser,
+                        loggObj = loggclass,
                         onCreateButtonClicked = {
-                            navController.navigate(TripWithUsScreen.AgencyTours.name)
+                            var user =loggclass.getAuth().currentUser
+                            var userId : String = ""
+                            user?.let {
+                                userId = it.uid
+                            }
+                            GlobalScope.launch (Dispatchers.Main){
+                                updateTours(userId)
+                                navController.navigate(TripWithUsScreen.AgencyTours.name)
+                            }
                         },
                         onCancelButtonClicked = {
                             navController.navigate(TripWithUsScreen.AgencyTours.name)

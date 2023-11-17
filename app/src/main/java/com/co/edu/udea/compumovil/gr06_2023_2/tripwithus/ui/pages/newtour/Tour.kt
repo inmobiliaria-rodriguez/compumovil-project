@@ -18,15 +18,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.R
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.Tour
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.User
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.ButtonItem
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.CustomTextArea
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.HeaderComponent
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.TextFieldItem
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.LoginFunctions
 
 @OptIn(ExperimentalFoundationApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 fun NewTourPage(
+    userObj: User?,
+    loggObj: LoginFunctions,
     onCreateButtonClicked: () -> Unit,
     onCancelButtonClicked: () -> Unit,
 ) {
@@ -37,7 +42,7 @@ fun NewTourPage(
     var tourDate by remember { mutableStateOf("") }
     var tourDuration by remember { mutableStateOf("") }
     var tourQuota by remember { mutableStateOf("") }
-    var tourDescription by remember { mutableStateOf("") }
+    var tourCapacity by remember { mutableStateOf("") }
     var text by remember { mutableStateOf("") }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -88,16 +93,41 @@ fun NewTourPage(
                             tourQuota = newTourQuota
                         })
                     TextFieldItem(text = R.string.quota,
-                        value = tourDescription,
+                        value = tourCapacity,
                         onValueChange = { newTourQuota ->
-                            tourDescription = newTourQuota
+                            tourCapacity = newTourQuota
                         })
                     CustomTextArea(text = text) {
                         text = it
                     }
                     ButtonItem(
                         text = "Crear",
-                        onClickFunction = onCreateButtonClicked
+                        onClickFunction = {
+                            var user = loggObj.getAuth().currentUser
+                            var userId : String = ""
+                            user?.let {
+                                userId = it.uid
+                            }
+                            val newTourId: String? = loggObj.getDatabase().getNewTourId()
+                            if(newTourId!=null){
+                                val newTour = Tour(
+                                    newTourId,
+                                    userId,
+                                    userObj?.name,
+                                    tourName,
+                                    tourGuide,
+                                    tourTime,
+                                    tourDate,
+                                    tourQuota,
+                                    tourCapacity,
+                                    text,
+                                    "ins coord",
+                                    "new"
+                                )
+                                loggObj.getDatabase().writeNewTour(newTourId,newTour)
+                            }
+                            onCreateButtonClicked()
+                        }
                     )
                     ButtonItem(
                         text = "Cancelar",

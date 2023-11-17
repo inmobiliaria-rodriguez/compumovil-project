@@ -19,6 +19,9 @@ class LoginFunctions() {
     fun getAuth():  FirebaseAuth {
         return auth
     }
+    fun getDatabase():DatabaseFunctions{
+        return database
+    }
     fun getUser():  FirebaseUser? {
         return user
     }

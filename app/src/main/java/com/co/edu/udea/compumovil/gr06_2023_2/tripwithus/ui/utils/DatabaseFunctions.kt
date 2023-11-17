@@ -44,4 +44,12 @@ class DatabaseFunctions() {
         Log.i("firebase", "Got tours  ${snapshot.value}")
         return tours
     }
+
+    fun getNewTourId():String?{
+       return database.child("Tours").push().getKey()
+    }
+
+    fun writeNewTour(tourId: String, tour:Tour) {
+        database.child("Tours").child(tourId).setValue(tour)
+    }
 }
