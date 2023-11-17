@@ -17,10 +17,10 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.tourList
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ListOfMyTours(
+    agencyTours: MutableList<Tour?>,
     onNewTourClicked: () -> Unit,
 ) { //items: List<Tour>
-    val TestTours = tourList(context = LocalContext.current);
-    Log.d("ToString", TestTours.toString())
+    //val TestTours = tourList(context = LocalContext.current);
     LazyColumn {
         stickyHeader {
             HeaderComponent(
@@ -29,7 +29,7 @@ fun ListOfMyTours(
                 onNewTourClicked = onNewTourClicked
             )
         }
-        itemsIndexed(TestTours){ index, tour ->
+        itemsIndexed(agencyTours){ index, tour ->
             AgencyTourItemComponent(
                 tour,
                 index,

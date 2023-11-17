@@ -31,4 +31,17 @@ class DatabaseFunctions() {
         Log.i("firebase", "Got user ${user} and ${user?.name}")
         return user
     }
+
+    suspend fun getAllTours() :MutableList<Tour?>{
+        var tours:MutableList<Tour?> = mutableListOf<Tour?>()
+        val snapshot = database.child("Tours").get().await()
+
+        for (tour in snapshot.getChildren()) {
+            val unitTour = tour.getValue<Tour>()
+            tours.add(unitTour)
+        }
+
+        Log.i("firebase", "Got tours  ${snapshot.value}")
+        return tours
+    }
 }

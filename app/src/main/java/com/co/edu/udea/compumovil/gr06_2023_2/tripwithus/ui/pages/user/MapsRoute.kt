@@ -65,7 +65,7 @@ fun MapsRoute() {
             )
             Text(
                 fontFamily = darumaDrop,
-                text = tour.name,
+                text = tour.name?:"dataerror",
                 fontSize = 34.sp,
                 color = TripWithUsTheme.colors.mainFontBlack,
                 textAlign = TextAlign.Center,
@@ -99,7 +99,7 @@ fun MapsRoute() {
             )
             Text(
                 fontFamily = darumaDrop,
-                text = tour.guide,
+                text = tour.guide?:"dataerror",
                 fontSize = 30.sp,
                 color = TripWithUsTheme.colors.mainFontBlack,
                 textAlign = TextAlign.Center,
@@ -120,7 +120,7 @@ fun MapsRoute() {
             )
             Text(
                 fontFamily = darumaDrop,
-                text = tour.hour,
+                text = tour.hour?:"dataerror",
                 fontSize = 30.sp,
                 color = TripWithUsTheme.colors.mainFontBlack,
                 textAlign = TextAlign.Center,

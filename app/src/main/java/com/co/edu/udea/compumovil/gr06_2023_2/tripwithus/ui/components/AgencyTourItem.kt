@@ -40,10 +40,11 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.theme.darumaDrop
 
 @Composable
 fun AgencyTourItemComponent(
-    data: Tour,
+    tour: Tour?,
     index: Int,
     modifier: Modifier = Modifier
 ) {
+    val data = tour
     var expanded by remember { mutableStateOf (false) }
     val gradient = when (index % 2) {
         0 -> TripWithUsTheme.colors.gradientTourItem1
@@ -61,7 +62,7 @@ fun AgencyTourItemComponent(
         ) {
             Text(
                 fontFamily = darumaDrop,
-                text = data.name,
+                text = data?.name?:"dataerror",
                 fontSize = 36.sp,
                 color = TripWithUsTheme.colors.mainFontBlack,
                 textAlign = TextAlign.Center,
@@ -88,7 +89,7 @@ fun AgencyTourItemComponent(
                     )
                     Text(
                         fontFamily = asul,
-                        text = data.date,
+                        text = data?.date?:"dataerror",
                         fontSize = 16.sp,
                         color = TripWithUsTheme.colors.mainFontBlack,
                     )
@@ -99,7 +100,7 @@ fun AgencyTourItemComponent(
                 ) {
                     Text(
                         fontFamily = asul,
-                        text = data.state,
+                        text = data?.state?:"dataerror",
                         fontSize = 16.sp,
                         color = TripWithUsTheme.colors.mainFontBlack,
                     )
@@ -117,7 +118,7 @@ fun AgencyTourItemComponent(
                         )
                         Text(
                             fontFamily = asul,
-                            text = data.hour,
+                            text = data?.hour?:"dataerror",
                             fontSize = 16.sp,
                             color = TripWithUsTheme.colors.mainFontBlack,
                         )
@@ -135,7 +136,7 @@ fun AgencyTourItemComponent(
                         )
                         Text(
                             fontFamily = asul,
-                            text = data.guide,
+                            text = data?.guide?:"dataerror",
                             fontSize = 16.sp,
                             color = TripWithUsTheme.colors.mainFontBlack,
                         )
@@ -153,7 +154,7 @@ fun AgencyTourItemComponent(
                         )
                         Text(
                             fontFamily = asul,
-                            text = "$" + data.price,
+                            text = "$" + data?.price,
                             fontSize = 16.sp,
                             color = TripWithUsTheme.colors.mainFontBlack,
                         )
@@ -197,7 +198,7 @@ fun AgencyTourItemComponent(
                     ) {
                         Text(
                             fontFamily = asul,
-                            text = data.description,
+                            text = data?.description?:"dataerror",
                             fontSize = 16.sp,
                             color = TripWithUsTheme.colors.mainFontBlack,
                         )
@@ -247,7 +248,7 @@ fun AgencyTourItemComponent(
 private fun TourItemPreview() {
     TripWithUsTheme {
         AgencyTourItemComponent(
-            data = Tour(
+            tour = Tour(
                 "Estepenco",
                 "Manizales",
                 "test",

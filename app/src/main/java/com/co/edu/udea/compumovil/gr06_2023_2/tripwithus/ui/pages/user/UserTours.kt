@@ -16,14 +16,15 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.tourList
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ListOfTours(
+    tours: MutableList<Tour?>,
     onInscriptionButtonClicked: () -> Unit
 ) {
-    val TestTours = tourList(context = LocalContext.current);
+    //val TestTours = tourList(context = LocalContext.current);
     LazyColumn {
         stickyHeader {
             HeaderComponent(text = "Tours Disponibles")
         }
-        itemsIndexed(TestTours){ index, tour ->
+        itemsIndexed(tours){ index, tour ->
             UserTourItemComponent(
                 tour,
                 index,

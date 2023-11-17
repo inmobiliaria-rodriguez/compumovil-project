@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.Tour
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.User
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.agency.ListOfMyTours
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.login.LoginPage
@@ -43,6 +44,8 @@ enum class TripWithUsScreen() {
 private val loggclass = LoginFunctions()
 private val dbclass = DatabaseFunctions()
 private var loggUser: User? = null
+private var allTours: MutableList<Tour?> = mutableListOf<Tour?>()
+private var agencyTours: MutableList<Tour?> = mutableListOf<Tour?>()
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,14 +76,17 @@ fun TripWithUsApp(
                     LoginPage(
                         loggObj = loggclass,
                         onSuccessLogin = {
+                            //Obtiene el id del usuario actual y lo guarda
                             var user =loggclass.getAuth().currentUser
                             var userId : String = ""
                             user?.let {
                                 userId = it.uid
                             }
                             GlobalScope.launch (Dispatchers.Main){
+                                //Busca los datos del usuario y de los tours
                                 loggUser = dbclass.getLoggedUser(userId)
-                                Log.i("firebase", "Pasó al activity ${loggUser} and ${loggUser?.name}")
+                                updateTours(userId)
+                                //Direcciona al usuario según su rol (Agencia o no)
                                 if(loggUser?.agency == true){
                                     navController.navigate(TripWithUsScreen.AgencyTours.name)
                                 }else{
@@ -106,7 +112,10 @@ fun TripWithUsApp(
                                 userId = it.uid
                             }
                             GlobalScope.launch (Dispatchers.Main){
+                                //Busca los datos del usuario y de los tours
                                 loggUser = dbclass.getLoggedUser(userId)
+                                updateTours(userId)
+                                //Direcciona al usuario según su rol (Agencia o no)
                                 if(loggUser?.agency == true){
                                     navController.navigate(TripWithUsScreen.AgencyTours.name)
                                 }else{
@@ -118,6 +127,7 @@ fun TripWithUsApp(
                 }
                 composable(route = TripWithUsScreen.AgencyTours.name) {
                     ListOfMyTours(
+                        agencyTours = agencyTours,
                         onNewTourClicked = {
                             navController.navigate(TripWithUsScreen.NewTour.name)
                         }
@@ -135,6 +145,7 @@ fun TripWithUsApp(
                 }
                 composable(route = TripWithUsScreen.UserTours.name) {
                     ListOfTours(
+                        tours = allTours,
                         onInscriptionButtonClicked = {
                             navController.navigate(TripWithUsScreen.MapTour.name)
                         }
@@ -146,4 +157,9 @@ fun TripWithUsApp(
             }
         }
     }
+}
+
+suspend fun updateTours(userId:String){
+    allTours = dbclass.getAllTours()
+    agencyTours = allTours.filter { sTour -> sTour?.companyId == userId}.toMutableList()
 }
