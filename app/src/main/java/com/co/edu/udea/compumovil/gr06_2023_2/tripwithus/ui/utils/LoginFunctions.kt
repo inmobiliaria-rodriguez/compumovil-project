@@ -39,7 +39,6 @@ class LoginFunctions() {
         password: String,
         onSuccessRegister: () -> Unit,
     ){
-
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener{ task ->
                 if (task.isSuccessful) {
@@ -86,7 +85,6 @@ class LoginFunctions() {
                         "Authentication failed.",
                         Toast.LENGTH_SHORT,
                     ).show()
-                    //OnFailLogin
                 }
             }
     }

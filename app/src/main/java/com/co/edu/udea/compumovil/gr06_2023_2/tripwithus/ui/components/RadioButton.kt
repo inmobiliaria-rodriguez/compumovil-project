@@ -22,7 +22,6 @@ fun RadioButtonComponent(
 ) {
     val agencyString = context.getString(R.string.agency)
     val userString = context.getString(R.string.user)
-    selectedUserOption.value = userString
     Column(
         modifier = Modifier
             .fillMaxWidth(),

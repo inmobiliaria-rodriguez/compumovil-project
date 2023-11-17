@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.User
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.agency.ListOfMyTours
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.login.LoginPage
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.pages.newtour.NewTourPage
@@ -26,6 +27,9 @@ import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.LoginFunctions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 enum class TripWithUsScreen() {
     Login,
@@ -38,6 +42,7 @@ enum class TripWithUsScreen() {
 
 private val loggclass = LoginFunctions()
 private val dbclass = DatabaseFunctions()
+private var loggUser: User? = null
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,7 +50,6 @@ class MainActivity : ComponentActivity() {
         loggclass.setAuth(Firebase.auth)
         dbclass.setDatabase(Firebase.database.reference)
         loggclass.setDatabase(dbclass.getDatabase())
-        //val currentUser = auth.currentUser //Needed??
         setContent {
             TripWithUsApp()
         }
@@ -69,8 +73,20 @@ fun TripWithUsApp(
                     LoginPage(
                         loggObj = loggclass,
                         onSuccessLogin = {
-                            navController.navigate(TripWithUsScreen.AgencyTours.name)//Goes to the Agency Dashboard
-                            //navController.navigate(TripWithUsScreen.UserTours.name)//Goes to the User Dashboard
+                            var user =loggclass.getAuth().currentUser
+                            var userId : String = ""
+                            user?.let {
+                                userId = it.uid
+                            }
+                            GlobalScope.launch (Dispatchers.Main){
+                                loggUser = dbclass.getLoggedUser(userId)
+                                Log.i("firebase", "Pasó al activity ${loggUser} and ${loggUser?.name}")
+                                if(loggUser?.agency == true){
+                                    navController.navigate(TripWithUsScreen.AgencyTours.name)
+                                }else{
+                                    navController.navigate(TripWithUsScreen.UserTours.name)
+                                }
+                            }
                         },
                         onRegisterButtonClicked = {
                             navController.navigate(TripWithUsScreen.Register.name)
@@ -84,7 +100,19 @@ fun TripWithUsApp(
                             navController.navigate(TripWithUsScreen.Login.name)
                         },
                         onSuccessRegister = {
-                            navController.navigate(TripWithUsScreen.UserTours.name)
+                            var user =loggclass.getAuth().currentUser
+                            var userId : String = ""
+                            user?.let {
+                                userId = it.uid
+                            }
+                            GlobalScope.launch (Dispatchers.Main){
+                                loggUser = dbclass.getLoggedUser(userId)
+                                if(loggUser?.agency == true){
+                                    navController.navigate(TripWithUsScreen.AgencyTours.name)
+                                }else{
+                                    navController.navigate(TripWithUsScreen.UserTours.name)
+                                }
+                            }
                         }
                     )
                 }

@@ -24,9 +24,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.R
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.model.User
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.ButtonItem
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.HeaderComponent
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.components.TextFieldItem
+import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.DatabaseFunctions
 import com.co.edu.udea.compumovil.gr06_2023_2.tripwithus.ui.utils.LoginFunctions
 
 @SuppressLint("UnrememberedMutableState")
